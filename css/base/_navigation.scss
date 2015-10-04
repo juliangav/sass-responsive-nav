@@ -1,0 +1,405 @@
+// General
+$baseline: .5em;
+
+// Colors
+$white:#ffffff;
+$blue: #23507a;
+$medium-gray: #999;
+
+// Navigation Specific
+$nav-font-size:1em;
+$nav-font-size-medium:1.125em;
+$nav-height:$baseline*6.5;
+$nav-background:$blue;
+$nav-background-mobile:$blue;
+$nav-text-color:$white;
+$nav-text-color-hover:$white;
+$nav-hover:$medium-gray;
+$nav-active-background:darken($nav-background, 10%);
+$nav-border:1px solid lighten($nav-background,5%);
+$nav-border-mobile:1px solid lighten($nav-background-mobile,5%);
+$nav-spacing-mobile:$baseline*2;
+$nav-spacing-medium:$baseline*2;
+$nav-spacing-large:$baseline*4;
+$nav-spacing-xlarge:$baseline*4;
+$nav-subnav-font-size:1em;
+$nav-subnav-height:$baseline*6.5;
+$nav-subnav-background:$nav-hover;
+$nav-subnav-border:1px solid lighten($nav-hover,10%);
+$nav-subnav-hover:darken($nav-subnav-background, 10%);
+$nav-mobile-width:17em;
+
+// Site Wrap - These settings are specific for the off canvas effect to work
+.site-wrap {
+  background: $white;
+  position: relative;
+  overflow: hidden; 
+  margin: 0 auto;
+}
+
+// Site Nav
+.site-nav {
+  background-color: $nav-background-mobile;
+  span {
+    white-space: nowrap;
+  }
+  &.active {
+    //display:block;
+  }
+  @include mq(medium) {
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
+    background-color: $nav-background;
+  }
+  ul, ol {
+    list-style-type: none;
+  }
+}
+
+.sn-level-1 {
+  margin: 0;
+  padding: 0;
+  @include mq(medium) {
+    height: $nav-height;
+  }
+}
+
+.sn-li-l1 {
+  display: block;
+  border-bottom: $nav-border-mobile;
+  background-color: $nav-background;
+  a.active {
+    background-color: $nav-active-background;
+  }
+  span {
+    font-size: $nav-font-size;
+  }
+  &.has-subnav,
+  &.menu-item-has-children {
+    > a {
+      span {
+        padding-right: 0em;
+        background-image: url(img/ico-arrowdown.svg);
+        background-repeat: no-repeat;
+        background-position: right center;
+        background-size: 0.75em;
+        display: block;
+      }
+      &.active {
+        span {
+          background-image: url(img/ico-arrowup.svg);
+        }
+      }
+    }
+  }
+  > a {
+    display: block;
+    height: $nav-height;
+    line-height: $nav-height;
+    color: $nav-text-color;
+    text-decoration: none;
+    padding: 0 $nav-spacing-mobile;
+    &:visited {
+      color: $nav-text-color;
+    }
+    &:hover {
+      color: $nav-text-color-hover;
+    }
+  }
+  &:hover {
+    background-color: $nav-hover;
+  }
+  @include mq(medium) {
+    height: $nav-height;
+    float: left;
+    border-bottom: 0;
+    border-right:$nav-border;
+    span {
+      font-size: $nav-font-size-medium;
+    }
+
+    /*
+		&:nth-child(1n) {
+			width:20%;
+		}
+		&:nth-child(2n) {
+			width:20%;
+		}
+		&:nth-child(3n) {
+			width:20%;
+		}
+		&:nth-child(4n) {
+			width:20%;
+		}
+		&:nth-child(5n) {
+			width:20%;
+		}*/
+    
+    &:hover {
+      .sn-level-2 {
+        display: block;
+      }
+    }
+    &.has-subnav,
+    &.menu-item-has-children {
+      > a {
+        span {
+          padding-right: 1em;
+          background-size: 0.625em;
+          display: inline;
+        }
+        &.active {
+          span {
+            background-image: url(img/ico-arrowdown.svg);
+          }
+        }
+      }
+    }
+    > a {
+      padding: 0 $nav-spacing-medium;
+    }
+  }
+  @include mq(large) {
+    a.active {
+      background-color: inherit;
+    }
+    span {
+      font-size: $nav-font-size;
+    }
+    > a {
+      padding: 0 $nav-spacing-large;
+    }
+  }
+  @include mq(xlarge) {
+    > a {
+      padding: 0 $nav-spacing-xlarge;
+    }
+  }
+}
+
+.sn-level-2 {
+  padding: 0;
+  margin: 0;
+  display: none;
+  position: relative;
+  &.active {
+    display: block;
+  }
+  @include mq(medium) {
+    position: absolute;
+    &.active {
+      display: none;
+    }
+  }
+}
+
+.sn-li-l2 {
+  background-color: $nav-subnav-background;
+  > a {
+    //background-color:red;
+    padding: 0 $nav-spacing-mobile;
+    color: $nav-text-color;
+    border-top: $nav-subnav-border;
+    display: block;
+    text-decoration: none;
+    line-height: $nav-subnav-height;
+    span {
+      font-size: $nav-subnav-font-size;
+      line-height: 1.25em;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  &:last-child {
+    > a {
+      border-bottom: 0;
+    }
+  }
+  &:hover {
+    background-color: $nav-subnav-hover;
+  }
+  @include mq(medium) {
+    &:hover {
+      .sn-level-3 {
+        display: block;
+      }
+    }
+    > a {
+      padding: 0 $nav-spacing-medium;
+    }
+  }
+  @include mq(large) {
+    > a {
+      padding: 0 $nav-spacing-large;
+    }
+  }
+  @include mq(xlarge) {
+    > a {
+      padding: 0 $nav-spacing-xlarge;
+    }
+  }
+}
+
+.sn-level-3 {
+  //background-color:green;
+  padding: 0;
+  margin: 0;
+  padding-top: 1px;
+  display: none;
+  position: relative;
+  border-left: 1px solid lighten($nav-hover, 10%);
+  &.active {
+    display: block;
+  }
+  @include mq(medium) {
+    position: absolute;
+    top: $nav-height;
+    left: 100%;
+    //width:22.5em;
+    &.active {
+      display: none;
+    }
+  }
+}
+
+.sn-li-l3 {
+  @extend .sn-li-l2;
+}
+
+//Site Nav Container
+.site-nav-container {
+  background-color: $nav-background-mobile;
+  width: 17em;
+  height: 100%;
+  //left:-20em;
+  right: -17em;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+  position: absolute;
+  -webkit-transition: all .25s ease-in-out;
+  -moz-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out;
+  &.active {
+    right: 0;
+  }
+  @include mq(medium) {
+    width: auto;
+    height: auto;
+    right: auto;
+    bottom: auto;
+    top: auto;
+    position: static;
+    background-color: transparent;
+  }
+}
+
+.site-nav-container-screen {
+  position: absolute;
+  display: none;
+  z-index: 999;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, .5);
+  &.active {
+    display: block;
+  }
+  @include mq(medium) {
+    display: none !important;
+  }
+}
+
+.close-menu {
+  display: inline-block;
+  clear: both;
+  //width:5em;
+  position: relative;
+  text-align: center;
+  color: $blue !important;
+  padding: .25em .75em;
+  padding-right: 1.5625em;
+  float:right;
+  font-size: 0.875em;
+  background-color: $white;
+  border-radius: 0.1875em;
+  clear:both;
+  &:visited {
+    color: $white;
+  }
+  &:hover {
+    color: $white;
+  }
+  &:after {
+    content: '';
+    background-color: transparent;
+    background-image: url(img/ico-exit.svg);
+    background-size: 0.8125em 0.8125em;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: block;
+    width: 1.5625em;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+  }
+  @include mq(medium) {
+    display: none;
+  }
+}
+
+.snc-header {
+  text-align: center;
+  padding: 1em;
+  clear:both;
+  display:block;
+  overflow:hidden;
+  @include mq(medium) {
+    padding: 0;
+  }
+}
+
+.snc-footer {}
+
+
+// Nav Icon
+.sh-icons {
+  float: right;
+  @include mq(medium) {}
+}
+
+%sh-ico {
+   background-repeat: no-repeat;
+  background-position: center top;
+  
+  display: inline-block;
+  padding-top: 1.2em;
+  width: 2em;
+  margin-left: 1em;
+  text-align: center;
+  //background-color:red;
+  span {
+    font-size: .75em;
+  }
+  @include mq(medium) {
+    display: none;
+  }
+}
+.sh-ico-menu {
+  @extend %sh-ico;
+  background-image: url(img/ico-nav.svg);
+}
+
+.sh-ico-close {
+  @extend %sh-ico;
+  background-size:1.25em;
+  background-image: url(img/ico-exit.svg);
+  span {
+    color:$white;
+  }
+}
+

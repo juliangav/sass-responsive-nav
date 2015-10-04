@@ -1,0 +1,222 @@
+// Typography
+$base-font-family: $helvetica;
+$header-font-family: $base-font-family;
+
+// Font Sizes
+$small-font-size: em(14);
+$base-font-size: em(16);
+$medium-font-size: em(21);
+$large-font-size: em(27);
+$xlarge-font-size: em(32);
+$display-font-size: em(50);
+
+$h1-font-size: $base-font-size * 2.25;
+$h2-font-size: $base-font-size * 2;
+$h3-font-size: $base-font-size * 1.75;
+$h4-font-size: $base-font-size * 1.5;
+$h5-font-size: $base-font-size * 1.25;
+$h6-font-size: $base-font-size;
+
+// Line height
+$baseline:em(8); //Old habits die hard
+$base-line:em(8);
+$base-line-height: 1.5;
+$header-line-height: 1.25;
+
+// Other Sizes
+$base-border-radius: 0;
+$base-spacing: $base-line-height * 1em;
+$base-z-index: 0;
+
+// Colors
+$white:#ffffff;
+$black:#000000;
+$blue: #23507a;
+$dark-gray: #333;
+$medium-gray: #999;
+$light-gray: #DDD;
+
+// Background Color
+$base-background-color: white;
+
+// Font Colors
+$base-font-color: $dark-gray;
+$base-accent-color: $blue;
+
+// Link Colors
+$base-link-color: $base-accent-color;
+$hover-link-color: darken($base-accent-color, 15);
+$base-button-color: $base-link-color;
+$hover-button-color: $hover-link-color;
+
+// Border color
+$base-border-color: $light-gray;
+$base-border: 1px solid $base-border-color;
+
+// Forms
+$form-border-color: $base-border-color;
+$form-border-color-hover: darken($base-border-color, 10);
+$form-border-color-focus: $base-accent-color;
+$form-border-radius: $base-border-radius;
+$form-box-shadow: inset 0 1px 3px rgba(black,0.06);
+$form-box-shadow-focus: $form-box-shadow, 0 0 5px rgba(darken($form-border-color-focus, 5), 0.7);
+$form-font-size: $base-font-size;
+$form-font-family: $base-font-family;
+
+body {
+  //@include font-feature-settings("kern","liga","frac", "pnum");
+  -webkit-font-smoothing: antialiased;
+  background-color: $base-background-color;
+  color: $base-font-color;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $header-font-family;
+  line-height: $header-line-height;
+  margin: 0;
+}
+
+h1 {
+  font-size: $display-font-size;
+  margin-top: 0;
+  margin-bottom: 32px;
+}
+
+h2 {
+  font-size: $xlarge-font-size;
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+h3 {
+  font-size: $large-font-size;
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+h4 {
+  font-size: $medium-font-size;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+h5 {
+  font-size: $base-font-size;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+h6 {
+  font-size: $base-font-size;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+p {
+  margin: 16px 0;
+}
+
+a {
+  @include transition(color 0.1s linear);
+  color: $base-link-color;
+  text-decoration: none;
+  &:hover {
+    color: $hover-link-color;
+  }
+  &:active,
+  &:focus {
+    color: $hover-link-color;
+    outline: none;
+  }
+}
+
+
+img,
+picture {
+  margin: 0;
+  max-width: 100%;
+}
+
+
+
+
+.inner-wrap {
+  //@include outer-container;
+  max-width:em(1100);
+  margin:0 auto;
+  > *:first-child {
+    margin-top: 0;
+  }
+  > *:last-child {
+    margin-bottom: 0;
+  }
+  padding: $baseline*3 $baseline*2 $baseline*3 $baseline*2;
+  
+  @include mq(medium) {
+     padding: $baseline*5 $baseline*3 $baseline*5 $baseline*3;
+    
+  }
+}
+
+
+/*=============== Site Header ===============*/
+
+.site-header {
+  background-color: $light-gray;
+}
+
+.site-utility-nav {
+  overflow: hidden;
+  .social-wrap {
+    width: 15em;
+    display: none;
+  }
+  @include mq(medium) {
+    text-align: right;
+    float: right;
+    .social-wrap {
+      display: inline-block;
+    }
+  }
+}
+.site-logo {
+  font-size:em(38);
+  line-height:1em;
+  color:$black;
+  display:block;
+  margin-bottom:$baseline;
+  font-weight:300;
+
+  span {
+    display:block;
+    font-size:.75em;
+  }
+}
+
+
+
+.ico-github {
+  background-image:url(img/ico-github.svg);
+  background-position:right center;
+  background-repeat:no-repeat;
+  background-size:1.125em;
+  padding-right:1.5em;
+}
+
+
+/*=============== Site Footer ===============*/
+
+.site-footer {
+   background-color: $light-gray;
+  text-align: center;
+
+}
+

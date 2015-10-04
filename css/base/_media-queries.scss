@@ -1,0 +1,11 @@
+//Media Queries
+$medium-screen:40em;
+$large-screen:60em;
+$xlarge-screen:80em;
+@mixin mq($mq) {
+  @if $mq == small  { @media (max-width: $medium-screen) { @content; } }
+  @if $mq == medium  { @media (min-width: $medium-screen) { @content; } }
+  @if $mq == large { @media (min-width: $large-screen) { @content; } }
+  @if $mq == xlarge { @media (min-width: $xlarge-screen) { @content; } }
+  @if $mq == retina  { @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { @content; } }
+}
